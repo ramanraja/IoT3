@@ -1,0 +1,1 @@
+python thermalCam14.py  192.168.0.109  1  1  31  37
