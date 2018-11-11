@@ -14,7 +14,8 @@ cv_settings = {
     "max_temp" : 34, 
     "min_red" :  [0, 120, 150], 
     "max_red" :  [10, 255, 255],    
-    "sleep_time" : 50
+    "sleep_time" : 50,
+    "autocal_interval" : 100
     }
 
 pickle.dump(cv_settings , open("settings_90621.p", "wb" ))
@@ -35,8 +36,9 @@ cv_settings = {
     "palette" :  1, 
     "min_temp" : 28, 
     "max_temp" : 34, 
-    "min_red" :  [0, 120, 150], 
+    "min_red" :  [0, 120, 150],  ### try also [0, 100, 100],
     "max_red" :  [10, 255, 255],    
-    "sleep_time" : 50
+    "sleep_time" : 50,
+    "autocal_interval" : 100
     }
 ---------------------------------------''' 
