@@ -13,7 +13,7 @@
 #define  FW_SERVER_URL          "http://52.40.239.77:5050/firmware/download3/bin"
 #define  FW_VERSION_URL         "http://52.40.239.77:5050/firmware/download3/txt"
 //////#define  UDP_SERVER_IP          "192.168.0.109"
-//////#define  UDP_PORT               12345L
+#define  UDP_PORT               12345L
  
 class Config {
 public :
