@@ -22,10 +22,11 @@
 * ...disconnect USB again...
 * Connect Teensy Pin 18 to 2.7V with a 4.7kOhm Resistor (Pullup)
 * Connect Teensy Pin 19 to 2.7V with a 4.7kOhm Resistor (Pullup)
-* Connect I2C Data (SDA) and Clock (SCK) Pins of Sensor with 4.7kOhm Pullup reistors
+* Connect I2C Data (SDA = D2 = GPIO 4) and Clock (SCK = D1 = GPIO 5) Pins of Sensor with 4.7kOhm Pullup reistors
 * Connect GND and 2.7V with a 100nF ceramic Capacitor.
 * Connect the VSS Pin of the Sensor to GND.
 * Connect the VDD Pin of the Sensor to 2.7V (if 3V through diode)
+Some times the sensor freezes, so you may need  a transistor to reset it.
  */
 
 #include "common.h"
@@ -38,7 +39,7 @@
 #include <WiFiUdp.h>
 #include <Timer.h>
 
-#define ssid      "RajaCell"  
+#define ssid      "RajaCell"  // TODO: use separate Wifi class and Config settings
 #define passwd    "raja1234" 
 
 #define ROWS              4
@@ -61,6 +62,10 @@ IPAddress remote_IP = IPAddress(192,168,0,105);   // default values, but later
 unsigned int remote_port = 54321;                 // these may be overridden by requestor
 boolean use_static_IP = true;
 
+IPAddress ip(192,168,0,109);
+IPAddress gateway(192,168,0,1);
+IPAddress subnet(255,255,255,0);
+      
 //int  FPS_param = 16;   // thermal cam 8 frames per second
 int  FPS_param = 4;   // thermal cam 2 frames per second
 
@@ -77,7 +82,7 @@ OtaHelper O;
 void setup(){ 
     pinMode (led1, OUTPUT);
     blinker();
-    pinMode(sensor_enable_pin, INPUT);
+    pinMode(sensor_enable_pin, OUTPUT);
     digitalWrite(sensor_enable_pin, HIGH);
     Serial.begin(115200); 
     SERIAL_PRINTLN("\nThermal camera MLX 90621 starting...");
@@ -190,9 +195,6 @@ void init_wifi() {
   }
   SERIAL_PRINTLN("\nWiFi Connected.");
   if (use_static_IP) {
-      IPAddress ip(192,168,0,109);
-      IPAddress gateway(192,168,0,1);
-      IPAddress subnet(255,255,255,0);
       WiFi.config(ip,gateway,subnet);
       SERIAL_PRINTLN("WiFi Configured.");
   }
