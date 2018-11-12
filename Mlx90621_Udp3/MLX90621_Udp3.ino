@@ -39,8 +39,8 @@ Some times the sensor freezes, so you may need  a transistor to reset it.
 #include <WiFiUdp.h>
 #include <Timer.h>
 
-#define ssid      "RajaCell"  // TODO: use separate Wifi class and Config settings
-#define passwd    "raja1234" 
+#define ssid      "sssss"  // TODO: use separate Wifi class and Config settings
+#define passwd    "ppppp" 
 
 #define ROWS              4
 #define COLS              16
